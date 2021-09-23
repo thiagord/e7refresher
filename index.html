@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>E7 Refresher</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">  
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/index.js"></script>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  
+  </head>
+
+
+ 
+  
+  <body class="container">
+   <header><img class="garo" src='images/garologo.png'> E7 Refresher</header>
+  
+   <nav>
+   <h1>Before</h1>
+    <div class="form-inline" >
+      <label for="gold"><img class="icon" src='images/gold.png'> </label>
+      <input type="text" class="money" id="sgold" placeholder="Stating gold" name="sgold">
+ 
+
+      <label for="skystones"> <img class="icon" src='images/sky.png'></label>
+      <input type="text" class="money" id="ssky" placeholder="Stating Skystones" name="ssky">
+
+
+      <label for="covenants"> <img class="icon" src='images/covenant.png'> </label>
+      <input type="text" class="money" id="scov" placeholder="Stating Convenants" name="scov">
+ 
+
+      <label for="mystics"> <img class="icon" src='images/mystic.png'></label>
+      <input type="text" class="money" id="smys" placeholder="Stating Mystics" name="smys">
+    
+   </div>
+
+ 
+
+   </nav>
+  
+   <main>
+     <h1>After</h1>
+  
+    <div class="form-inline" >
+      <label for="gold"><img class="icon" src='images/gold.png'> </label>
+ 
+      <input type="text" class="money" id="fgold" placeholder="Final gold" name="fgold">
+
+      <label for="skystones"> <img class="icon" src='images/sky.png'></label>
+  
+      <input type="text" class="money" id="fsky" placeholder="Final Skystones" name="fsky">
+
+      <label for="covenants"> <img class="icon" src='images/covenant.png'> </label>
+
+      <input type="text" class="money" id="fcov" placeholder="Final Convenants" name="fcov">
+
+      <label for="mystics"> <img class="icon" src='images/mystic.png'></label>
+    
+      <input type="text" class="money" id="fmys" placeholder="Final Mystics" name="fmys">
+
+
+     <button onclick="calculate('');">Calculate</button>      
+
+   </div>
+    </main>
+
+
+   <aside>
+     
+   <h1> Result</h2>
+    <h1 id="result"></h1>
+
+   </aside>
+
+     <footer></footer>
+  </body>
+</html>

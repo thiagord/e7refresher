@@ -1,88 +1,73 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>E7 Refresher</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">  
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/index.js"></script>
-   
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-  
-  </head>
+$(document).ready(function(){
 
-
+    $('.money').mask('00.000.000.000.000,000', {reverse: true});
+     // Loading
+     users = JSON.parse(localStorage.getItem("users") || "[]");
+     // console.log("# of users: " + users.length);
  
-  
-  <body class="container">
-   <header><img class="garo" src='images/garologo.png'> E7 Refresher</header>
-  
-   <nav>
-   <h1>Before</h1>
-    <div class="form-inline" >
-      <label for="gold"><img class="icon" src='images/gold.png'> </label>
-      <input type="text" class="money" id="sgold" placeholder="Stating gold" name="sgold">
- 
-
-      <label for="skystones"> <img class="icon" src='images/sky.png'></label>
-      <input type="text" class="money" id="ssky" placeholder="Stating Skystones" name="ssky">
-
-
-      <label for="covenants"> <img class="icon" src='images/covenant.png'> </label>
-      <input type="text" class="money" id="scov" placeholder="Stating Convenants" name="scov">
- 
-
-      <label for="mystics"> <img class="icon" src='images/mystic.png'></label>
-      <input type="text" class="money" id="smys" placeholder="Stating Mystics" name="smys">
-    
-   </div>
-
- 
-
-   </nav>
-  
-   <main>
-     <h1>After</h1>
-  
-    <div class="form-inline" >
-      <label for="gold"><img class="icon" src='images/gold.png'> </label>
- 
-      <input type="text" class="money" id="fgold" placeholder="Final gold" name="fgold">
-
-      <label for="skystones"> <img class="icon" src='images/sky.png'></label>
-  
-      <input type="text" class="money" id="fsky" placeholder="Final Skystones" name="fsky">
-
-      <label for="covenants"> <img class="icon" src='images/covenant.png'> </label>
-
-      <input type="text" class="money" id="fcov" placeholder="Final Convenants" name="fcov">
-
-      <label for="mystics"> <img class="icon" src='images/mystic.png'></label>
-    
-      <input type="text" class="money" id="fmys" placeholder="Final Mystics" name="fmys">
-
-
-     <button onclick="calculate('');">Calculate</button>      
-
-   </div>
-    </main>
-
-
-   <aside>
+     users.forEach(function(user, index) {
+     // console.log("[" + index + "]: " + user.id);
      
-   <h1> Result</h2>
-    <h1 id="result"></h1>
+       $("#result").prepend('<p class="result" id="r_'+user.id+'">You spent <u class=masked> '+user.gold+'</u> <img class="icon" src=images/gold.png>  and <u class=masked>'+user.sky+'</u> <img class="icon" src=images/sky.png>  for <u class=masked>'+user.cov+'</u> <img class="icon" src=images/covenant.png>  and <u class=masked>'+user.mys+'</u> <img class="icon" src=images/mystic.png> on '+user.data+'. <a onclick="deleteR('+index+', '+user.id+');"> <img class="icon" src="images/delete.png"> </a></p><br> ');
+       $(".masked").mask('00.000.000.000.000,000', {reverse: true});
+   
+     });
+ 
+     
+     });
+ 
+     //Delete result from storage and array
+     function deleteR(indexr, id) {
+       if (confirm('Are you sure you want to delete from history?')) {
+       users.splice(indexr, 1);
+       localStorage.setItem("users", JSON.stringify(users));
+       $( "#r_"+id ).remove();
+       }
+     }
+ 
+     //Function to calculate and save
+     function calculate() { 
+ 
+       var isValid;
+     $("input").each(function() {
+       var element = $(this);
+       if (element.val() == "") {
+           isValid = false;
+       }
+     });
+ 
+     if(isValid == false) {
+       alert("Blank input!")
+       return;
+     }
+ 
+     var rgold = $("#sgold").val().replace(/ |,|\.|/g, "") - $("#fgold").val().replace(/ |,|\.|/g, "");
+     var rsky = $("#ssky").val().replace(/ |,|\.|/g, "") - $("#fsky").val().replace(/ |,|\.|/g, "");
+     var rcov = $("#fcov").val().replace(/ |,|\.|/g, "") - $("#scov").val().replace(/ |,|\.|/g, "");
+     var rmys = $("#fmys").val().replace(/ |,|\.|/g, "") - $("#smys").val().replace(/ |,|\.|/g, "");
+ 
+       // Modifying
+     var user = {
+       id: Math.floor(Math.random() * 1000000),
+       gold: rgold,
+       sky: rsky,
+       cov: rcov,
+       mys: rmys,
+       data: moment().format('LLL')
+     };
+ 
+     
+   $("#result").prepend('<p class="result">You spent <u class=masked>'+rgold+'</u> <img class="icon" src=images/gold.png>  and <u class=masked>'+rsky+'</u> <img class="icon" src=images/sky.png>  for <u class=masked>'+rcov+'</u> <img class="icon" src=images/covenant.png>  and <u class=masked>'+rmys+'</u> <img class="icon" src=images/mystic.png> on '+moment().format('LLL')+'.</p><br> ');
+ 
+   // Saving
+   users.push(user); 	
+   localStorage.setItem("users", JSON.stringify(users));
+   
+     }
 
-   </aside>
-
-     <footer></footer>
-  </body>
-</html>
+     function clear(e){
+      e.preventDefault();
+      $('#bform')[0].reset();
+      $('#fform')[0].reset();
+     }
+   

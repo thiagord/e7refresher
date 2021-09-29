@@ -13,6 +13,7 @@ $(document).ready(function(){
    
      });
  
+     
      });
  
      //Delete result from storage and array
@@ -40,11 +41,6 @@ $(document).ready(function(){
        return;
      }
  
-     if($("#fcov").val() < $("#scov").val() || $("#fmys").val() < $("#smys").val()) {
-       alert("Wtf something is wrong with your cov/mys");
- 
-     }
- 
      var rgold = $("#sgold").val().replace(/ |,|\.|/g, "") - $("#fgold").val().replace(/ |,|\.|/g, "");
      var rsky = $("#ssky").val().replace(/ |,|\.|/g, "") - $("#fsky").val().replace(/ |,|\.|/g, "");
      var rcov = $("#fcov").val().replace(/ |,|\.|/g, "") - $("#scov").val().replace(/ |,|\.|/g, "");
@@ -67,5 +63,11 @@ $(document).ready(function(){
    users.push(user); 	
    localStorage.setItem("users", JSON.stringify(users));
    
+     }
+
+     function clear(e){
+      e.preventDefault();
+      $('#bform')[0].reset();
+      $('#fform')[0].reset();
      }
    

@@ -27,7 +27,7 @@
   
    <nav>
    <h1>Before</h1>
-   <form id="bform">
+   <form id="bform" onsubmit="return false">
     <div class="form-inline" >
     
 
@@ -54,7 +54,7 @@
   
    <main>
      <h1>After</h1>
-     <form id="fform">
+     <form id="fform" onsubmit="return false">
   
       <div class="form-inline" >
    
@@ -75,7 +75,7 @@
     
       <input type="text" class="money" id="fmys" placeholder="Final Mystics" name="fmys">
 
-        <div class="buttons">
+        <div class="buttons"></div>
      <button onclick="calculate('');">Calculate</button>   
      <button onclick="clear('');">Clear</button> 
        </div> 
